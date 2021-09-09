@@ -34,7 +34,7 @@ namespace TestWeb.Models
     {
         public int Id;
         public int PhotolabId;
-        public int CustomId;
+        public string CustomId;
         public string SourceOrderId;
         public string ManagerId;
         public string AssignedTold;
