@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@using TestWeb.Models
+@model TestWeb.Models.ResponseOrder
+
+
+<table border="1">
+    <tr>
+        <th>Id</th>
+        <th>Price</th>
+        <th>Status</th>
+        <th>Date created</th>
+        <th>Full Name</th>
+        <th>Phone</th>
+        <th>ZipCode</th>
+        <th>Date paid</th>
+        <th>Status</th>
+    </tr>
+    @foreach (var order in Model.Result) OrderInfo(order);
+</table>
+
+@functions{
+    public DateTime ConvertTime(string stringtime)
+    {
+        if (stringtime == null) return new DateTime();
+        long milliseconds = Convert.ToInt64(new string(stringtime.Where(c => Char.IsDigit(c)).ToArray()));
+        return new DateTime(1970, 1, 1, 0, 0, 0, 0).AddMilliseconds(milliseconds);
+    }
+
+    public void OrderInfo(Order order)
+    {
+
+<tr>
+    <th>@order.Id</th>
+    <th>@order.Title</th>
+    <th>@order.Price</th>
+    <th>@ConvertTime(order.DateCreated)</th>
+    <th>@order.deliveryAddress.FullName</th>
+    <th>@order.deliveryAddress.Phone</th>
+    <th>@order.deliveryAddress.ZipCode</th>
+    <th>@ConvertTime(order.DatePaid)</th>
+    <th>@order.Status</th>
+
+</tr>
+        //$"{order.Id} \t {order.Price} \t {order.Status}";
+    }
+
+
+}
