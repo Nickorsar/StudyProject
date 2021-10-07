@@ -1,0 +1,88 @@
+﻿<Window x:Class="SealApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SealApp"
+        mc:Ignorable="d"
+        Title="SealApp" Height="450" Width="800" SizeChanged="Window_SizeChanged">
+    <Grid x:Name="layoutGrid">
+        
+       
+        <TabControl x:Name="tables">
+            <TabItem x:Name="ReceiptTab">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>Поступление товара</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView Name="ReceiptList"  VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible"  ScrollViewer.CanContentScroll="True" Margin="0,2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=StorageName}">Название склада</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Наименование Товара</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}">Количество товара, шт</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Mass}">Масса 1 шт, кг</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=IsFragile}">Хрупкое да/нет</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Date}">Дата поступления на склад</GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="ShipmentTab">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>Отгрузка товара</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+
+                        <ListView Name="ShipmentList"  VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False" Margin="0,2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=StorageName}">Название склада</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Name}">Наименование Товара</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}">Количество товара, шт</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Mass}">Масса 1 шт, кг</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=IsFragile}">Хрупкое да/нет</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Date}">Дата отгрузки со склада</GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="stockTab">
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock>Запасы товаров</TextBlock>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content >
+                    <StackPanel>
+                        <WrapPanel>
+                            <DatePicker Name="datePicker" SelectedDateFormat="Short" Width="100" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,5" SelectedDateChanged="datePicker_SelectedDateChanged"/>
+                            <Button x:Name="DLoadButton" Content="Скачать" Width="100" Height="30" Click="DLoadButton_Click" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="5,5"/>
+                        </WrapPanel>
+
+                        <ListView Name="StockList"  VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="False" Margin="0,2">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=ProductName}"></GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}">Количество товаров, шт</GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Path=Mass}">Масса всего, кг</GridViewColumn>
+
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
